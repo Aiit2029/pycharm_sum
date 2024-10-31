@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'bootstrap-5.3.0-alpha1-dist/css/bootstrap.css' %}">
+    <title>书籍首页</title>
+     <style>
+        .cover_page {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: 99;
+        }
+
+        .modal_page {
+            width: 300px;
+            height: 200px;
+            background-color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -100px;
+            margin-left: -150px;
+            z-index: 1000;
+        }
+        .hide_page {
+            display: none;
+        }
+        </style>
+</head>
+<body>
+<button id="add">新增</button>
+<table class="table">
+    <thead>
+        <tr>
+            <th>编号</th>
+            <th>书籍名称</th>
+            <th>价格</th>
+            <th>出版日期</th>
+            <th>出版社</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>python</td>
+            <td>123</td>
+            <td>2024-10-31</td>
+            <td>这也算是出版社</td>
+            <td>
+                <button type="button" class ="edit_inner"  name="edit">编辑</button>
+                <button type="button" class="delete_parent" name="cancle">删除</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class = 'cover_page hide_page'></div>
+<div class = 'cover_page hide_page'></div>
+<div class="cover_page hide_page"></div>
+<div class="modal_page hide_page">
+    <table class="table">
+        <div>
+            <label>书籍序号：
+            <input type="text" id="book_id">
+        </label>
+        </div>
+        <div>
+        <label>书籍名称：
+            <input type="text" id="book_name">
+        </label>
+    </div>
+    <div>
+        <label>价格：
+            <input type='text' id="book_price">
+        </label>
+    </div>
+    <div>
+        <label>出版日期：
+            <input type="date" id="release_date">
+        </label>
+    </div>
+    <div>
+        <label>出版社：
+            <input type="text" id="release_address">
+        </label>
+    </div>
+    <button id="cancel" type="button">取消</button>
+    <button id="submit" type="button">提交</button>
+    </table>
+    
+</div>    
+</body>
+<script src="{% static 'jquery-3.7.1.min.js' %}">
+</script>
+<script>
+    
+        function hideModal(){
+         // 1. 清空input的值
+        $("#book_name,#book_price,#release_date,#release_address").val('');
+        // 2. 隐藏起来
+        $(".cover_page,.modal_page").addClass('hide_page');
+    }   
+    $(".edit_inner").click(function (){
+        
+    })
+    $("#add").click(function () {
+        // 点击新增按钮要做的事儿
+        // 1. 移除cover和modal的hide样式
+        $(".cover_page,.modal_page").removeClass('hide_page');
+    });
+    // 点击modal中的cancel按钮
+    $("#cancel").click(function () {
+       hideModal();
+    });
+    $('table').on('click','.delete_parent' ,function(){
+        $(this).parent().parent().remove();
+    })
+     $("#submit").click(function () {
+        // 1. 获取用户输入的值
+         var book_id = $("#book_id").val();
+        var book_name = $("#book_name").val();
+        var book_price = $("#book_price").val();
+        var release_date = $("#release_date").val();
+        var release_address = $("#release_address").val();
+        // 2. 隐藏模态框，清空输入框
+        hideModal();
+        // 3. 创建一个tr标签，把数据塞进去
+        var trEle = document.createElement("tr");
+        $(trEle).append('<td>'+ book_id + '</td>');
+        $(trEle).append('<td>' + book_name + '</td>');
+        $(trEle).append('<td>' + book_price + '</td>');
+        $(trEle).append('<td>' + release_date + '</td>');
+        $(trEle).append('<td>' + release_address + '</td>');
+        $(trEle).append('<td><button type="button" name="edit">编辑</button> <button type="button" class="delete_parent" name="cancle">删除</button></td>')
+        // 4. 把上一步的tr追加到表格的tbody后面
+        $('tbody').append(trEle);
+    });
+    
+</script>
+
+
+</html>
