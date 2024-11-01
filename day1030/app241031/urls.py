@@ -19,5 +19,7 @@ from django.urls import path,include
 from app241031 import views
 
 urlpatterns = [
-    path('main/',views.main)
+    path('main/',views.main),
+    path('edit_book/',views.edit_book),
+    path('delete_book/',views.delete_book),
 ]
