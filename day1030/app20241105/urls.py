@@ -17,11 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 
-from app241030 import views
+from app20241105 import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('index/',views.index),
-    path('app1031/',include('app241031.urls')),
-    path('app20241105/',include('app20241105.urls'))
+    path('query/',views.query)
 ]

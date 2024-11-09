@@ -12,7 +12,9 @@
 <div class="row">
 <div class="col-md-8 col-md-offset-2">
     <div>
-    <button id="add" class="btn btn-primary">新增</button>
+    
+        <a href="{% url 'add_book' %}" class="btn btn-primary">新增书籍</a>
+    
     </div>
 
 <table class="table table-hover table-striped">
@@ -36,8 +38,8 @@
                 <td>{{ book.release_date }}</td>
                 <td>{{ book.release_address }}</td>
                 <td>
-                    <button type="button" class ="btn btn-warning edit_inner"  name="edit"><a href="/app1031/edit_book/">编辑</a></button>
-                    <button type="button" class="btn btn-danger delete_parent" name="cancle"><a href="/app1031/delete_book/">删除</a></button>
+                    <button type="button" class ="btn btn-warning edit_inner"  name="edit"><a href={% url 'edit_book' book.id %}>编辑</a></button>
+                    <button type="button" class="btn btn-danger delete_parent" name="cancle"><a href={% url 'delete_book' book.id %}>删除</a></button>
                 </td>
                  </tr>
             {% endfor %}

@@ -4,35 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{% static 'bootstrap-5.3.0-alpha1-dist/css/bootstrap.css' %}">
-    <title>编辑书籍</title>
+    <title>书籍首页</title>
 </head>
 <body>
-<h1>编辑书籍</h1>
+<h1>添加书籍</h1>
 
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <form action="{% url 'edit_book' obj.id %}" method="post">
+            <form action="/app1031/add_book/" method="post">
                 {% csrf_token %}
                 
                 <div class="form-group">
                 <label for="title">书籍名称</label>
-                <input type="text" class="form-control" id="title" name="book_title" placeholder="{{ obj.book_name }}">
+                <input type="text" class="form-control" id="title" name="book_title" placeholder="书名">
                 </div>
                 
                 <div class="form-group">
                 <label for="price">价格</label>
-                <input type="number" class="form-control" id="price" name="book_price" placeholder="{{ obj.book_price }}">
+                <input type="number" class="form-control" id="price" name="book_price" placeholder="价格">
                 </div>
                 
                 <div class="form-group">
                 <label for="date">出版日期</label>
-                <input type="date" class="form-control" id="date" name="book_date" placeholder="{{ obj.release_date }}">
+                <input type="date" class="form-control" id="date" name="book_date" placeholder="出版日期">
                 </div>
                 
                 <div class="form-group">
                 <label for="publish">出版社</label>
-                <input type="text" class="form-control" id="publish" name="book_publish" placeholder="{{ obj.release_address }}">
+                <input type="text" class="form-control" id="publish" name="book_publish" placeholder="出版社">
                 </div>
                 
                 <button type="submit" class="btn btn-success">提交</button>
